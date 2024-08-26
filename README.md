@@ -11,8 +11,8 @@ Best is to install these scripts into your ~/bin directory<br>
 My scripts assume French as locale so if you have different locale edit bkstars for the git response 'Déjà à jour." that will be different on your system <br>
 
 # Invoke as "indi Projects"<br>
- It will set-up the environement to compile the indi and kastar sources<br>
- The script will create the following tree into your home directory<br>
+ It will set-up the environement to compile the indi and kstar sources<br>
+ The script will then create the following tree into your home directory<br>
 
  Projects/<br>
  ├── build<br>
@@ -23,10 +23,10 @@ My scripts assume French as locale so if you have different locale edit bkstars 
  ├── libXISF<br>
  └── stellarsolver<br>
 
- It then will install all dependencies for idi, indi-3rdparty, kstars<br>
+ It then will install all dependencies for indi, indi-3rdparty, kstars<br>
  and install libXISF<br>
 
- After that your system is ready for the compilation of:<br>
+ After that your system is ready for the compilation for:<br>
 # indi<br>
  cd ~/Projects/indi<br>
  ./developer-build.bash<br>
