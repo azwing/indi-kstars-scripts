@@ -1,32 +1,32 @@
 These scripts are provided to help the proper set-up of a debian based system
 to allow compilation of the sources for:<br>
-libindi, 
-indi-3rd-party, 
-stellarsolver, 
-libXIFS, 
-and kstars
+libindi, <br>
+indi-3rd-party, <br>
+stellarsolver, <br>
+libXIFS, <br>
+and kstars<br>
 
-Best is to install these scripts into your ~/bin directory
+Best is to install these scripts into your ~/bin directory<br>
 
-My scripts assume French as locale so if you have different locale exit bkstars for the git response 'Déjà à jour." that will be different on your system 
+My scripts assume French as locale so if you have different locale exit bkstars for the git response 'Déjà à jour." that will be different on your system <br>
 
-# Invoke as "indi Projects"
- It will set-up the environement to compile the indi and kastar sources
- The script will create the following tree into your home directory
+# Invoke as "indi Projects"<br>
+ It will set-up the environement to compile the indi and kastar sources<br>
+ The script will create the following tree into your home directory<br>
 
- Projects/
- ├── build
- ├── indi
- ├── indi-3rdparty
- ├── kstars
- ├── kstars-build
- ├── libXISF
- └── stellarsolver
+ Projects/<br>
+ ├── build<br>
+ ├── indi<br>
+ ├── indi-3rdparty<br>
+ ├── kstars<br>
+ ├── kstars-build<br>
+ ├── libXISF<br>
+ └── stellarsolver<br>
 
- It then will install all dependencies for idi, indi-3rdparty, kstars
- and install libXISF
+ It then will install all dependencies for idi, indi-3rdparty, kstars<br>
+ and install libXISF<br>
 
- After that your system is ready for the compilation of:
+ After that your system is ready for the compilation of:<br>
 # indi<br>
  cd ~/Projects/indi<br>
  ./developer-build.bash<br>
