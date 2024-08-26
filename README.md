@@ -1,5 +1,5 @@
 These scripts are provided to help the proper set-up of a debian based system
-to allow compilation of the sources for:
+to allow compilation of the sources for:<br>
 libindi, 
 indi-3rd-party, 
 stellarsolver, 
