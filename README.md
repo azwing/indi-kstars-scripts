@@ -10,7 +10,7 @@ Best is to install these scripts into your ~/bin directory<br>
 
 My scripts assume French as locale so if you have different locale edit bkstars for the git response 'Déjà à jour." that will be different on your system <br>
 
-# To avoid conflicts avoid to install distribution packages for indi and kstars.<br>
+# To avoid conflicts do not install distribution packages for indi and kstars or remove them is already installed!<br>
 
 # Invoke as "indi Projects"<br>
  It will set-up the environement to compile the indi and kstar sources<br>
