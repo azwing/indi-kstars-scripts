@@ -1,9 +1,9 @@
 These scripts are provided to help the proper set-up of a debian based system
 to allow compilation of the sources for:
-libindi
-indi-3rd-party
-stellarsolver
-libXIFS
+libindi, 
+indi-3rd-party, 
+stellarsolver, 
+libXIFS, 
 and kstars
 
 Best is to install these scripts into your ~/bin directory
