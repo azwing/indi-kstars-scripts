@@ -8,7 +8,7 @@ and kstars<br>
 
 Best is to install these scripts into your ~/bin directory<br>
 
-My scripts assume French as locale so if you have different locale exit bkstars for the git response 'Déjà à jour." that will be different on your system <br>
+My scripts assume French as locale so if you have different locale edit bkstars for the git response 'Déjà à jour." that will be different on your system <br>
 
 # Invoke as "indi Projects"<br>
  It will set-up the environement to compile the indi and kastar sources<br>
