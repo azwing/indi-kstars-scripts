@@ -1,0 +1,14 @@
+#!/bin/sh
+srcdir=~/Projects/indi-3rdparty
+tmpdir=/dev/shm/tmplibs
+builddir=~/Projects/build
+cd $srcdir
+git pull
+mkdir $tmpdir
+cd $tmpdir
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Debug -DBUILD_LIBS=1 $srcdir
+make -j4
+sudo make install
+cp install_manifest.txt $builddir/lib_install_manifest
+cd ..
+sudo rm -r $tmpdir

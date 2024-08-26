@@ -1,0 +1,28 @@
+#!/bin/sh
+srcdir=~/Projects/indi-3rdparty/
+tmpdir=/dev/shm/tmpdir
+builddir=~/Projects/build/
+# Remove old install log
+rm $builddir/3rdparty_install_manifest.txt
+# create an empty temporary working directory
+mkdir $tmpdir
+cd $tmpdir 
+# cmake does the job for us, set all the driver directories ... 
+cmake -DCMAKE_INSTALL_PREFIX=/usr $srcdir 
+# We just extract all the driver directories
+Path=`tree -L 1 | grep indi- | awk '{print $2}'`
+# for each driver
+for driver in $Path
+do
+        figlet $driver
+        cd $driver
+        echo "\n\n=======================" $driver "=======================\n" >> $builddir/3rdparty_install_manifest.txt
+        cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Debug $srcdir/$driver/
+        make -j6
+        sudo make install
+        # keep track for later uninstall if necessary
+        cat install_manifest.txt >> $builddir/3rdparty_install_manifest.txt
+        cd ..
+done
+cd ..
+sudo rm -r tmpdir

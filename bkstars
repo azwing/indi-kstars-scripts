@@ -1,0 +1,42 @@
+#!/bin/bash
+builddir=i~/Projects/build/
+srcdir=~/Projects/stellarsolver
+tmpdir=/dev/shm/tmpdir
+njobs=$(nproc)
+mkdir $tmpdir
+cd $srcdir 
+# edit next line depending on your locale
+rep="Déjà à jour."
+ret=$(git pull)
+if [ "$ret" = "$rep" ]; then
+        echo "Stellarsolver is up to date"
+	read -n1 -r -p "Press any key to continue..."
+else
+	
+        echo "Stellarsolve will be build"
+        read -n1 -r -p "Press any key to continue..."
+        cd $tmpdir
+        cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTER=ON  $srcdir
+        make -j$njobs
+        sudo make install
+        cp install_manifest.txt $builddir/stellarsolver_manifest.txt
+fi
+
+sudo rm -r $tmpdir
+mkdir $tmpdir
+srcdir=~/Projects/kstars
+cd $srcdir 
+# edit next line depending on your locale
+rep="Déjà à jour."
+ret=$(git pull)
+if [ "$ret" = "$rep" ]; then
+        echo "Kstars is up to date"
+else
+        cd $tmpdir 
+        rm CMakeCache.txt
+        cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=OFF  $srcdir 
+        make -j$njobs
+        sudo make install
+        cp install_manifest.txt $builddir/kstars_manifest.txt
+fi
+#sudo rm -r $tmpdir

@@ -1,0 +1,113 @@
+#!/bin/bash
+#
+# Alain Zwingelstein / azwing@free.fr
+# Licenced GPL v3
+# Invoke as "indi Projects"
+# It will set-up the environement to compile the indi and kastar sources
+# The script will create the following tree into your home directory
+#
+# Projects/
+# ├── build
+# ├── indi
+# ├── indi-3rdparty
+# ├── kstars
+# ├── kstars-build
+# ├── libXISF
+# └── stellarsolver
+#
+# It then will install all dependencies for idi, indi-3rdparty, kstars
+# and install libXISF
+#
+# After that your system is ready for the compilation of:
+# indi
+# ===============================
+# cd ~/Projects/indi
+# ./developer-build.bash
+# cd build
+# sudo make install
+# cd ..
+# rm build
+# sudo rm -r /dev/shm/indi-build
+# -------------------------------
+#
+# indi-3rdparty libs
+# ===============================
+# run the companion script "build3"
+# -------------------------------
+#
+# indi-3rd-party
+# ===============================
+# run the companion script "3rd"
+# -------------------------------
+#
+# stellarsolver
+# ===============================
+# is part of the build process handlled by the "bkstar" script
+# -------------------------------
+#
+# libXIFSF
+# ===============================
+# cd ~/Projects/libXISF
+# git pull
+# cmake -B build -S .
+# cmake --build build --parallel
+# sudo cmake --install build
+#
+# -------------------------------
+#
+# and kstars
+# ===============================
+# run the companion script "bkstars"
+# -------------------------------
+#
+# All the scripts assume you have ebougth RAM available (Min 4Gbyte)
+# since everything is compiled in /dev/shm avoiding SSD usage
+
+cd ~
+# ========== check if Projects directory exists, if not create it
+if [ ! -d $1 ]; then
+  mkdir $1 
+fi
+cd $1 
+# ========== check if indi exists, if not git clone it 
+if [ ! -d "indi" ]; then
+  git clone https://github.com/indilib/indi.git indi
+fi
+# ========= check if indi-3rdparty exists, if not goit clone it
+if [ ! -d "indi-3rdparty" ]; then
+  git clone https://github.com/indilib/indi-3rdparty.git indi-3rdparty
+fi
+# ======== ckeck if stellarsolver exists, if nt git clone it
+if [ ! -d "stellarsolver" ]; then
+  git clone https://github.com/rlancaste/stellarsolver.git stellarsolver
+fi
+# ======== ckeck if libXISF exists, if nt git clone it
+if [ ! -d "libXISF" ]; then
+  git clone https://gitea.nouspiro.space/nou/libXISF.git libXISF
+fi
+# ======== ckeck if kstars exists, if nt git clone it
+if [ ! -d "kstars" ]; then
+  git clone https://invent.kde.org/education/kstars.git kstars
+fi
+# ========== check if kstars-build exists, if not create it
+if [ ! -d "kstars-build" ]; then
+  mkdir kstars-build 
+fi
+# ========== check if build exists, if not create it
+if [ ! -d "build" ]; then
+  mkdir build 
+fi
+# ========== install dependencies
+# ========== libindi
+sudo apt install -y tree git cdbs dkms cmake fxload libev-dev libgps-dev libgsl-dev libraw-dev libusb-dev zlib1g-dev libftdi-dev libjpeg-dev libkrb5-dev libnova-dev libtiff-dev libfftw3-dev librtlsdr-dev libcfitsio-dev libgphoto2-dev build-essential libusb-1.0-0-dev libdc1394-dev libboost-regex-dev libcurl4-gnutls-dev libtheora-dev
+# ========== indi-3rdparty
+sudo apt install -y libnova-dev libcfitsio-dev libusb-1.0-0-dev zlib1g-dev libgsl-dev build-essential cmake git libjpeg-dev libcurl4-gnutls-dev libtiff-dev libftdi-dev libgps-dev libraw-dev libdc1394-dev libgphoto2-dev libboost-dev libboost-regex-dev librtlsdr-dev liblimesuite-dev libftdi1-dev libgps-dev libavcodec-dev libavdevice-dev libzmq3-dev
+# ========== kstars
+# ========== dont install "libstellarsolver-dev libxisf-dev libindi-dev" they will be built locally"
+sudo apt install -y build-essential cmake git libeigen3-dev libcfitsio-dev zlib1g-dev extra-cmake-modules libkf5plotting-dev libqt5svg5-dev libkf5xmlgui-dev libkf5kio-dev kinit-dev libkf5newstuff-dev libkf5doctools-dev libkf5notifications-dev qtdeclarative5-dev libkf5crash-dev gettext libnova-dev libgsl-dev libraw-dev libkf5notifyconfig-dev wcslib-dev libqt5websockets5-dev xplanet xplanet-images qt5keychain-dev libsecret-1-dev breeze-icon-theme libqt5datavisualization5-dev 
+# ============ Install libXISF
+cd libXISF
+git pull
+cmake -B build -S .
+cmake --build build --parallel
+sudo cmake --install build
