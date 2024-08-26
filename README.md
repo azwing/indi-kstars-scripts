@@ -28,7 +28,6 @@ My scripts assume French as locale so if you have different locale exit bkstars 
 
  After that your system is ready for the compilation of:
 # indi<br>
- ===============================<br>
  cd ~/Projects/indi<br>
  ./developer-build.bash<br>
  cd build<br>
@@ -36,37 +35,25 @@ My scripts assume French as locale so if you have different locale exit bkstars 
  cd ..<br>
  rm build<br>
  sudo rm -r /dev/shm/indi-build<br>
- -------------------------------<br>
 
 # indi-3rdparty libs<br>
- ===============================<br>
  run the companion script "build3"<br>
- -------------------------------<br>
 
 # indi-3rd-party<br>
- ===============================<br>
  run the companion script "3rd"<br>
- -------------------------------<br>
 
 # stellarsolver<br>
- ===============================<br>
  is part of the build process handlled by the "bkstar" script<br>
- -------------------------------<br>
 
 # libXIFSF<br>
- ===============================<br>
  cd ~/Projects/libXISF<br>
  git pull<br>
  cmake -B build -S .<br>
  cmake --build build --parallel<br>
  sudo cmake --install build<br>
 
- -------------------------------<br>
-
-# and kstars<br>
- ===============================<br>
+# kstars<br>
  run the companion script "bkstars"<br>
- -------------------------------<br>
 
  All the scripts assume you have ebougth RAM available (Min 4Gbyte)<br>
  since everything is compiled in /dev/shm avoiding SSD usage<br>
